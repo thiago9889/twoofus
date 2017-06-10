@@ -71,4 +71,31 @@ class Dbnome extends CI_Controller {
 		}
 	}
 	
+	public function codigoconexao(){
+		$login = $this->session->userdata("_LOGIN");
+		if (isset($login)) {
+		$this->load->model("Contacasal", "ctc");
+		$this->load->model("Usuario","usr");
+		$this->load->model("UsuarioDAO","usrDAO");
+		$data2["login"] = $this->session->userdata("_LOGIN");
+		$this->usr->criar(0,$data2["login"],"","","","","");
+		$codigoconecta = $this->usrDAO->pegarcodigo($this->usr);
+			if ($codigoconecta == NULL){
+					$data['codigonovo'] = ($this->ctc->getMaxContaCasal())+1;
+					$this->ctc->criar($data['codigonovo']);
+					$this->ctcDAO->inserir($this->ctc);
+					$this->usr->criar(0,$data2["login"],"","","","",$data['codigonovo']);
+					$this->usrDAO->atualizaconecta($this->usr);
+					$this->load->view("header");
+	    			$this->load->view("codigoconexao", $data);
+			}else{
+				$data['codigonovo'] = $codigoconecta;
+				$this->load->view("header");
+	    		$this->load->view("codigoconexao", $data);
+			}
+		}else{
+		header("location: /ci/dbnome/login");
+		}			
+	}
+	
 }
