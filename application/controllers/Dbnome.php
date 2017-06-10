@@ -156,6 +156,17 @@ public function inserirevento(){
 		header("location: /ci/dbnome/login");		
 		}
 	}
+
+public function deletarevento() {
+		$login = $this->session->userdata("_LOGIN");
+		if (isset($login)) {		
+        $id = $this->input->post('id');
+        $this->load->model("EventoDAO","evtDAO");
+        $this->evtDAO->excluir($id);
+		}else{
+		header("location: /ci/dbnome/login");		
+		}
+    }
 	
 	
 }
