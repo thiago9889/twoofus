@@ -18,6 +18,38 @@ class UsuarioDAO extends CI_Model{
         $query = $this->db->get();
         return $query->num_rows() == 1;
     }
+
+public function pegarContaCasal(Usuario $usr){
+    	$cdcasal = $this -> db
+       -> select('cd_contacasal')
+       -> where('ds_email', $usr->getEmail() )
+       -> limit(1)
+       -> get('usuario')
+       -> result_array()[0]['cd_contacasal'];
+        return $cdcasal;        
+    }
+    
+    public function pegarNomeUsuario(Usuario $usr){
+    	$nmusuario = $this -> db
+       -> select('nm_usuario')
+       -> where('ds_email', $usr->getEmail() )
+       -> limit(1)
+       -> get('usuario')
+       -> result_array()[0]['nm_usuario'];
+        return $nmusuario;        
+    }
+    
+    public function pegarNomeParceiro(Usuario $usr){
+    	$nmparceiro = $this -> db
+       -> select('nm_usuario')
+       -> where('cd_contacasal', $usr->getContaCasal() )
+       -> where('ds_email !=', $usr->getEmail() )
+       -> limit(1)
+       -> get('usuario')
+       -> result_array()[0]['nm_usuario'];
+        return $nmparceiro;
+    }
+
     public function atualizaconecta(Usuario $usr){
         $this->db->set('cd_conecta', $usr->getConecta())
         ->where('ds_email', $usr->getEmail())
