@@ -9,8 +9,13 @@ class Evento extends CI_Model{
         $this->dt_evento = $dt_evento;
         $this->hr_evento = $hr_evento;
     }
-    
-   
+    public function getEventos(){
+        $this->load->model("EventoDAO","evtDAO");
+        return $this->evtDAO->pegarEventos($this);
+    }    
+    public function getContaCasal(){
+        return $this->cd_contacasal;
+    }        
     public function toArray(){
         return get_object_vars($this);
     }
