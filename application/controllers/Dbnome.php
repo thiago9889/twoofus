@@ -129,5 +129,16 @@ class Dbnome extends CI_Controller {
 		header("location: /ci/dbnome/login");
 		}
 	}
+public function	cadastraevento(){
+		$login = $this->session->userdata("_LOGIN");
+		if (isset($login)) {
+		$this->load->view("header");
+		$this->load->view("cadastraevento");		
+		}else{
+		header("location: /ci/dbnome/login");
+		}		
+
+	}
+	
 	
 }
