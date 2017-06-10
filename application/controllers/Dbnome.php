@@ -33,5 +33,42 @@ class Dbnome extends CI_Controller {
 		}
 	}
 
+	public function login(){
+	    $this->load->view("header");
+		$this->load->view("login");
+	}
+	
+	public function conexao(){
+		$login = $this->session->userdata("_LOGIN");
+		if (isset($login)) {
+		$this->load->view("header");
+	    $this->load->view("conexao");
+		}else{
+		header("location: /ci/dbnome/login");
+		}
+
+	}
+	public function autentica(){
+		$this->load->model("Usuario","usr");
+		$email = $this->input->post("email");
+		$this->usr->criar(0,$this->input->post("email"),$this->input->post("senha"),"","","");
+		$email2 = $this->usr->getEmail();
+		$senha2 = $this->usr->getSenha();
+		if($this->usr->estaAutenticado())
+		{
+			$this->session->set_userdata("_LOGIN",$email);
+				if ($this->usr->getContaCasal() == 1)
+				{
+					header("location: /ci/dbnome/conexao");
+				}
+				else
+				{
+					header("location: /ci/dbnome/principal");
+				}
+		}else
+		{
+			header("location: /ci/dbnome/login");echo "Autenticação necessária";
+		}
+	}
 	
 }
