@@ -1,4 +1,13 @@
 ﻿<body>
+  <script>
+ function goDelete(id){
+    var agree = confirm("Tem certeza que deseja deletar este evento?");
+    if(agree){
+      $("#evento"+id).fadeOut('slow');
+      $.post('deletarevento/', {id:id});
+    }
+  }
+  </script>
     <main class="text-center">
     <p><?php echo $nome_usuario ?> <span class="glyphicon glyphicon-heart"></span> <?php echo $nome_parceiro ?></p>
     <h1>Eventos</h1><br/><br/>
@@ -16,7 +25,7 @@
           </div>
           <div class="col-sm-2 eventos_botoes">
             <p></p>
-            <span class="glyphicon glyphicon-remove-sign"></span></p>
+            <span onclick="return goDelete('.$evento['cd_evento'].');" class="glyphicon glyphicon-remove-sign"></span></p>
           </div>          
         </div>';
 
