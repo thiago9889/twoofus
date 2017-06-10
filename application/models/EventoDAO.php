@@ -10,6 +10,10 @@ class EventoDAO extends CI_Model{
     }
     public function inserir(Evento $evt){
         $this->db->insert("evento",$evt->toArray());
+    }
+public function excluir($id){
+        $this->db->where('cd_evento', $id);
+        $this->db->delete('evento');
     }    
 }
 ?>
