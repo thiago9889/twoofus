@@ -15,19 +15,34 @@
     <div class="row ">
     <div class="col-md-4"></div>
     <div class="col-md-4 text-left  principal">
+  <?php 
+        $this->load->helper('date');
+        $diaformat = '%d';
+        $mesformat = '%m';
+        $anoformat = '%Y';
+
+        foreach ($eventos as $evento):
+        $time = strtotime($evento['dt_evento']);
+        $dia = mdate($diaformat, $time);
+        $mes = mdate($mesformat, $time);
+        $ano = mdate($anoformat, $time);
+        echo '
             <div class="row evento" id="evento'.$evento['cd_evento'].'">
           <div class="col-sm-2">
-            <p class="principal_dia">01</p>
+            <p class="principal_dia">'.$dia.'</p>
           </div>
           <div class="col-sm-8">
-            <p class="principal_data">junho de 2017 - 18:00</p>
-            <p class="principal_evento">Exemplo evento</p>
+            <p class="principal_data">'.$mes.' de '.$ano.' - '.substr($evento['hr_evento'],0,5).'</p>
+            <p class="principal_evento">'.$evento['nm_evento'].'</p>
           </div>
           <div class="col-sm-2 eventos_botoes">
             <p></p>
             <span onclick="return goDelete('.$evento['cd_evento'].');" class="glyphicon glyphicon-remove-sign"></span></p>
           </div>          
         </div>';
+                
+
+        endforeach;?>
 
 
     </div>
