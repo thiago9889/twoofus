@@ -1,6 +1,6 @@
-<body>
+﻿<body>
     <main class="text-center">
-    <p>Usuário 1<span class="glyphicon glyphicon-heart"></span>Usuário 2</p>
+    <p><?php echo $nome_usuario ?> <span class="glyphicon glyphicon-heart"></span> <?php echo $nome_parceiro ?></p>
     <h1>Eventos</h1><br/><br/>
     <div class="container">
     <div class="row ">
