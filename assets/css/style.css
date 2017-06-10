@@ -1,0 +1,110 @@
+@import url(http://allfont.net/allfont.css?fonts=montserrat-light);
+body {
+    font-family: Montserrat Light, sans-serif;
+    background: #f9eaf1;
+    background-image: URL('../../img/background.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+}
+area {
+    cursor: default;
+    display:block;
+}
+.cursor{
+    cursor: pointer;
+}
+.logo {
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #dc4774;
+}
+button {
+    background-color: #dc4774;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+a {
+    color: #dc4774;
+}
+
+a:hover{
+    color: #cb275a;
+}
+
+main {
+    padding-top: 40px;
+}
+
+main>p {
+    margin: 0;
+}
+
+label {
+    margin-top: 15px;
+}
+
+form, .principal {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+}
+input:focus, button:focus {
+  border-color: rgba(255, 97, 146, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 97, 146, 0.6);
+  outline: 0 none;
+}
+.codigo{
+    border:dashed 2px #cb275a;
+    font-size:2em;
+    color: #cb275a;
+}
+#login, #hrAlarmeAtual{
+    display:none;
+}
+.tamanho{
+    min-height:300px;
+}
+.form-group{
+    margin:0;
+    padding: 0;
+}
+.control-label{
+    margin: 0;
+    padding: 0 10px;
+}
+.principal_dia{
+    font-size: 3em;
+    color: #cb275a;
+}
+.principal_data{
+    font-size: 0.7em;
+    color: #999;
+    margin-top: 13px;
+}
+.principal_evento{
+    font-size: 1.1em;
+    color: #222;
+    margin-top: -10px;
+}
+.evento{
+    border-bottom: 1px solid #cb275a;
+    height: 60px;
+    margin-bottom: 1em;
+}
+.eventos_botoes{
+    margin-top: 10px;
+    font-size: 1.4em;
+    color: #cb275a;
+}
+.eventos_botoes span {
+    cursor: pointer;
+}
