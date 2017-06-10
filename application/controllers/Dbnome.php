@@ -70,7 +70,7 @@ class Dbnome extends CI_Controller {
 			header("location: /ci/dbnome/login");echo "Autenticação necessária";
 		}
 	}
-	
+
 	public function codigoconexao(){
 		$login = $this->session->userdata("_LOGIN");
 		if (isset($login)) {
@@ -96,6 +96,35 @@ class Dbnome extends CI_Controller {
 		}else{
 		header("location: /ci/dbnome/login");
 		}			
+	}
+	public function verificarconecta(){
+		$login = $this->session->userdata("_LOGIN");
+		if (isset($login)) {		
+		$this->load->model("Usuario","usr");
+		$this->load->model("UsuarioDAO","usrDAO");
+		$cd_conecta = $this->input->post("cd_conecta");
+		$data2["login"] = $this->session->userdata("_LOGIN");
+		$this->usr->criar(0,$data2["login"],"","","","",$cd_conecta);
+			if ($this->usr->getContaCasal() == 1)
+			{
+				$this->usrDAO->atualizaconecta($this->usr);
+				$cd_usuario_igual = $this->usr->verificarcodigoigual();
+					if ($cd_usuario_igual == NULL){
+						header("location:javascript://history.go(-1)");
+					}else{
+						$this->load->model("UsuarioDAO","usrDAO");
+						$this->usr->criar(0,$data2["login"],"","","","",$cd_conecta);
+						$this->usrDAO->alterarCodigoCasal1($this->usr);
+						$this->usr->criar($cd_usuario_igual[0]['cd_usuario'],"","","","","",$cd_conecta);
+						$this->usrDAO->alterarCodigoCasal2($this->usr);						
+						header("location: /ci/dbnome/principal");
+					}
+			}else{
+			header("location: /ci/dbnome/principal");			
+			}
+		}else{
+		header("location: /ci/dbnome/login");
+		}
 	}
 	
 }
