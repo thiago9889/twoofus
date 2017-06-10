@@ -139,6 +139,23 @@ public function	cadastraevento(){
 		}		
 
 	}
+
+public function inserirevento(){
+		$login = $this->session->userdata("_LOGIN");
+		if (isset($login)) {		
+		$this->load->model("Evento","evt");
+		$this->load->model("EventoDAO","evtDAO");
+		$this->load->model("Usuario","usr");
+		$data["login"] = $this->session->userdata("_LOGIN");
+		$this->usr->criar(0,$data["login"],"","","","","");
+		$codigo_casal = $this->usr->getContaCasal();
+		$this->evt->criar(0,$this->input->post("nome"),$this->input->post("data"),$this->input->post("hora"),$codigo_casal);
+		$this->evtDAO->inserir($this->evt);
+		header("location: /ci/dbnome/principal");
+		}else{
+		header("location: /ci/dbnome/login");		
+		}
+	}
 	
 	
 }
