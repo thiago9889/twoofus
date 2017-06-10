@@ -70,7 +70,10 @@ class Dbnome extends CI_Controller {
 			header("location: /ci/dbnome/login");echo "Autenticação necessária";
 		}
 	}
-
+	public function logout(){
+		$this->session->unset_userdata("_LOGIN");
+		header("location: /ci/dbnome/login");
+	}
 	public function codigoconexao(){
 		$login = $this->session->userdata("_LOGIN");
 		if (isset($login)) {
